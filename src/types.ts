@@ -34,4 +34,4 @@ export interface TestReport {
   conclusions: string[];
 }
 
-export type ViewMode = 'Dashboard' | 'Correlation' | 'Reporting';
+export type ViewMode = 'VehicleViewer' | 'Reporting' | 'Minesweeper';

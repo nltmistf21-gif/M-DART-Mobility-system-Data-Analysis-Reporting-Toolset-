@@ -54,6 +54,28 @@ app.post("/api/generate-report-text", async (req, res) => {
   }
 });
 
+app.get("/api/stock-price", async (req, res) => {
+  try {
+    const response = await fetch("https://polling.finance.naver.com/api/realtime?query=SERVICE_ITEM:012450");
+    const data: any = await response.json();
+    
+    if (data?.result?.areas?.[0]?.datas?.[0]) {
+      const stockData = data.result.areas[0].datas[0];
+      res.json({
+        price: stockData.nv,
+        change: stockData.cr,
+        changeValue: stockData.cv,
+        time: stockData.tt
+      });
+    } else {
+      throw new Error("Invalid response from Naver Finance");
+    }
+  } catch (error: any) {
+    console.error("Stock Fetch Error:", error);
+    res.status(500).json({ error: error.message });
+  }
+});
+
 async function startServer() {
   if (process.env.NODE_ENV !== "production") {
     const vite = await createViteServer({

@@ -1,6 +1,6 @@
 {
-  "name": "M-DART",
-  "description": "Mobility-system Data Analysis & Reporting Toolset for high-speed sensor data analysis, FEA correlation, and automated technical reporting.",
+  "name": "Hanwha M-DART",
+  "description": "Hanwha Aerospace M-DART: Mobility-system Data Analysis & Reporting Toolset for high-speed sensor data analysis, FEA correlation, and automated technical reporting.",
   "requestFramePermissions": [],
   "majorCapabilities": [
     "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"

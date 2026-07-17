@@ -1,24 +1,24 @@
 import React, { useState } from 'react';
 import Sidebar from './components/Sidebar';
-import Dashboard from './components/Dashboard';
-import CorrelationView from './components/CorrelationView';
+import VehicleViewer from './components/VehicleViewer';
 import ReportPanel from './components/ReportPanel';
+import Minesweeper from './components/Minesweeper';
 import { ViewMode } from './types';
 import { motion, AnimatePresence } from 'motion/react';
 
 export default function App() {
-  const [currentView, setCurrentView] = useState<ViewMode>('Dashboard');
+  const [currentView, setCurrentView] = useState<ViewMode>('VehicleViewer');
 
   const renderView = () => {
     switch (currentView) {
-      case 'Dashboard':
-        return <Dashboard />;
-      case 'Correlation':
-        return <CorrelationView />;
+      case 'VehicleViewer':
+        return <VehicleViewer />;
       case 'Reporting':
         return <ReportPanel />;
+      case 'Minesweeper':
+        return <Minesweeper />;
       default:
-        return <Dashboard />;
+        return <VehicleViewer />;
     }
   };
 

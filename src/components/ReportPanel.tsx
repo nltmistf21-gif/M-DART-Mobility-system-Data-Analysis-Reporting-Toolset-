@@ -38,92 +38,92 @@ export default function ReportPanel() {
   };
 
   return (
-    <div className="flex-1 flex flex-col h-screen bg-brand-bg text-slate-200 overflow-hidden">
-      <header className="h-16 border-b border-slate-800 flex items-center justify-between px-6 bg-brand-card sticky top-0 z-10">
+    <div className="flex-1 flex flex-col h-screen bg-brand-bg text-slate-800 overflow-hidden font-sans">
+      <header className="h-16 border-b border-brand-border flex items-center justify-between px-6 bg-brand-card sticky top-0 z-10 glass-morphism">
         <div className="flex items-center gap-4">
-          <h2 className="text-lg font-semibold text-white tracking-tight">Auto-Reporting Engine</h2>
-          <div className="h-4 w-px bg-slate-700" />
-          <span className="text-[10px] text-slate-400 font-mono italic uppercase tracking-widest">M-DART Drafting Module</span>
+          <h2 className="text-lg font-semibold text-slate-900 tracking-tight apple-tight">Reporting Engine</h2>
+          <div className="h-4 w-px bg-slate-300" />
+          <span className="text-[10px] text-slate-500 font-bold uppercase tracking-widest apple-tight">M-DART Intelligence Module</span>
         </div>
         <div className="flex items-center gap-3">
-          <button className="flex items-center gap-2 px-4 py-2 bg-slate-800 hover:bg-slate-700 border border-slate-700 rounded text-xs font-medium transition-colors">
-            <Save className="w-4 h-4 text-slate-400" />
+          <button className="flex items-center gap-2 px-6 py-2 bg-slate-100 text-slate-700 hover:bg-slate-200 border border-slate-300 rounded-full text-xs font-bold uppercase tracking-widest text-slate-700 transition-all active:scale-95">
+            <Save className="w-4 h-4 text-slate-600" />
             <span>Save Draft</span>
           </button>
-          <button className="flex items-center gap-2 px-4 py-2 bg-sky-600 hover:bg-sky-500 rounded text-xs font-bold text-white transition-all shadow-lg shadow-sky-900/20">
+          <button className="flex items-center gap-2 px-8 py-2 bg-hanwha-orange text-white hover:bg-hanwha-orange text-white-bright rounded-full text-xs font-bold uppercase tracking-widest transition-all text-white shadow-lg shadow-hanwha-orange/20 active:scale-95">
             <Download className="w-4 h-4" />
-            <span>Export Report</span>
+            <span>Export Final</span>
           </button>
         </div>
       </header>
 
-      <main className="flex-1 overflow-y-auto p-4 max-w-6xl mx-auto w-full">
-        <div className="grid grid-cols-12 gap-4">
+      <main className="flex-1 overflow-y-auto p-8 max-w-7xl mx-auto w-full">
+        <div className="grid grid-cols-12 gap-8">
           {/* Report Editor */}
-          <div className="col-span-8 space-y-4">
-            <div className="bg-brand-card border border-slate-800 rounded-lg p-8 min-h-[850px] relative">
-              <div className="absolute top-0 right-0 p-6">
-                <FileText className="w-10 h-10 text-slate-800/50" />
+          <div className="col-span-8 space-y-8">
+            <div className="bg-brand-card border border-brand-border rounded-2xl p-12 min-h-[900px] relative shadow-2xl">
+              <div className="absolute top-0 right-0 p-8">
+                <FileText className="w-12 h-12 text-slate-200" />
               </div>
               
               <input 
                 type="text" 
                 value={reportTitle}
                 onChange={(e) => setReportTitle(e.target.value)}
-                className="text-2xl font-bold bg-transparent border-none text-white focus:outline-none w-full mb-1 tracking-tight"
+                className="text-3xl font-bold bg-transparent border-none text-slate-900 focus:outline-none w-full mb-2 tracking-tight apple-tight"
               />
-              <div className="flex items-center gap-4 text-[10px] font-mono text-slate-500 mb-8 pb-4 border-b border-slate-800 uppercase tracking-widest">
-                <span className="flex items-center gap-1.5"><Clock className="w-3.5 h-3.5" /> 2026-07-16 18:04:40</span>
-                <span className="flex items-center gap-1.5 text-sky-400 font-bold">Classification: MIL-INTERNAL</span>
+              <div className="flex items-center gap-6 text-[10px] font-bold text-slate-500 mb-10 pb-6 border-b border-brand-border uppercase tracking-[0.2em] apple-tight">
+                <span className="flex items-center gap-2"><Clock className="w-4 h-4" /> 2026-07-16 18:04:40</span>
+                <span className="flex items-center gap-2 text-hanwha-orange">Status: MIL-INTERNAL</span>
               </div>
 
               {/* Dynamic Content Section */}
-              <div className="space-y-8">
+              <div className="space-y-12">
                 <section>
-                  <h3 className="text-xs font-bold text-sky-400 mb-4 flex items-center gap-2 uppercase tracking-widest border-b border-slate-800/50 pb-2">
+                  <h3 className="text-[11px] font-bold text-hanwha-orange mb-6 flex items-center gap-2 uppercase tracking-[0.2em] apple-tight border-b border-hanwha-orange/10 pb-3">
                     Executive Summary
                   </h3>
                   {draftText ? (
-                    <div className="prose prose-invert max-w-none">
-                      <p className="text-slate-400 leading-relaxed whitespace-pre-wrap font-serif text-[13px]">
+                    <div className="prose prose max-w-none">
+                      <p className="text-slate-700 leading-relaxed whitespace-pre-wrap font-serif text-[15px] italic">
                         {draftText}
                       </p>
                     </div>
                   ) : (
-                    <div className="h-40 flex flex-col items-center justify-center border border-slate-800 rounded bg-brand-bg group">
-                      <p className="text-[11px] text-slate-500 mb-4 font-mono uppercase tracking-widest">No intelligence drafted</p>
+                    <div className="h-56 flex flex-col items-center justify-center border border-brand-border rounded-2xl bg-slate-50 group transition-all hover:border-slate-300">
+                      <p className="text-[11px] text-slate-500 mb-6 font-bold uppercase tracking-widest apple-tight opacity-50">Intelligent Analysis Pending</p>
                       <button 
                         onClick={generateSmartDraft}
                         disabled={isGenerating}
-                        className="flex items-center gap-2 px-6 py-2.5 bg-sky-500/10 hover:bg-sky-500/20 text-sky-400 rounded border border-sky-500/20 transition-all font-bold text-xs uppercase tracking-widest"
+                        className="flex items-center gap-3 px-8 py-3 bg-hanwha-orange/10 hover:bg-hanwha-orange/20 text-hanwha-orange rounded-full border border-hanwha-orange/20 transition-all font-bold text-xs uppercase tracking-widest active:scale-95 shadow-lg shadow-hanwha-orange/5"
                       >
-                        {isGenerating ? <Loader2 className="w-3 h-3 animate-spin" /> : <Wand2 className="w-3 h-3" />}
-                        Smart Draft (AI)
+                        {isGenerating ? <Loader2 className="w-4 h-4 animate-spin" /> : <Wand2 className="w-4 h-4" />}
+                        Generate Smart Draft
                       </button>
                     </div>
                   )}
                 </section>
 
                 <section>
-                  <h3 className="text-xs font-bold text-sky-400 mb-4 flex items-center gap-2 uppercase tracking-widest border-b border-slate-800/50 pb-2">
-                    Measured Analysis
+                  <h3 className="text-[11px] font-bold text-hanwha-orange mb-6 flex items-center gap-2 uppercase tracking-[0.2em] apple-tight border-b border-hanwha-orange/10 pb-3">
+                    Metrical Validation
                   </h3>
-                  <div className="bg-brand-bg rounded border border-slate-800 overflow-hidden">
-                    <table className="w-full text-left text-[11px] font-mono">
+                  <div className="bg-slate-50 rounded-2xl border border-brand-border overflow-hidden">
+                    <table className="w-full text-left text-[12px] font-mono">
                       <thead>
-                        <tr className="text-slate-500 border-b border-slate-800 bg-slate-900/30">
-                          <th className="py-2.5 px-4 font-bold uppercase tracking-tighter">Sensor</th>
-                          <th className="py-2.5 px-4 font-bold uppercase tracking-tighter">Peak</th>
-                          <th className="py-2.5 px-4 font-bold uppercase tracking-tighter">Safety Margin</th>
+                        <tr className="text-slate-500 border-b border-brand-border bg-slate-100">
+                          <th className="py-4 px-6 font-bold uppercase tracking-widest">Node ID</th>
+                          <th className="py-4 px-6 font-bold uppercase tracking-widest text-right">Peak (MPa)</th>
+                          <th className="py-4 px-6 font-bold uppercase tracking-widest text-right">Margin</th>
                         </tr>
                       </thead>
-                      <tbody className="divide-y divide-slate-800/50">
+                      <tbody className="divide-y divide-brand-border">
                         {MOCK_FEA_CORRELATION.map((f, i) => (
-                          <tr key={i}>
-                            <td className="py-2 px-4 text-sky-400 font-bold">{f.sensorId}</td>
-                            <td className="py-2 px-4 text-slate-200 font-bold">{f.testValue} MPa</td>
-                            <td className="py-2 px-4">
-                              <span className="text-emerald-500">{((320 - f.testValue) / 320 * 100).toFixed(1)}%</span>
+                          <tr key={i} className="hover:bg-slate-100 transition-colors">
+                            <td className="py-4 px-6 text-hanwha-orange font-bold">{f.sensorId}</td>
+                            <td className="py-4 px-6 text-slate-800 font-bold text-right">{f.testValue.toFixed(1)}</td>
+                            <td className="py-4 px-6 text-right">
+                              <span className="text-emerald-600 font-bold">+{((320 - f.testValue) / 320 * 100).toFixed(1)}%</span>
                             </td>
                           </tr>
                         ))}
@@ -133,12 +133,12 @@ export default function ReportPanel() {
                 </section>
 
                 <section>
-                  <h3 className="text-xs font-bold text-sky-400 mb-4 flex items-center gap-2 uppercase tracking-widest border-b border-slate-800/50 pb-2">
-                    Verdict
+                  <h3 className="text-[11px] font-bold text-hanwha-orange mb-6 flex items-center gap-2 uppercase tracking-[0.2em] apple-tight border-b border-hanwha-orange/10 pb-3">
+                    Mission Verdict
                   </h3>
-                  <div className="p-4 bg-emerald-500/5 border border-emerald-500/20 rounded">
-                    <p className="text-[11px] text-emerald-500/80 leading-relaxed font-medium uppercase tracking-tight">
-                      Structural integrity confirmed. All measured values reside within safety envelope defined by MIL-STD-810G.
+                  <div className="p-6 bg-emerald-500/5 border border-emerald-500/10 rounded-2xl shadow-inner">
+                    <p className="text-[13px] text-emerald-500/90 leading-relaxed font-bold uppercase tracking-tight apple-tight">
+                      System integrity validated. All measured values reside within safety envelope defined by MIL-STD-810G protocols.
                     </p>
                   </div>
                 </section>
@@ -147,34 +147,35 @@ export default function ReportPanel() {
           </div>
 
           {/* AI Assistant Side Panel */}
-          <div className="col-span-4 space-y-4">
-            <div className="bg-brand-card border border-slate-800 rounded-lg p-5 flex flex-col gap-4">
-              <h4 className="text-[10px] font-bold text-slate-500 uppercase tracking-widest flex items-center justify-between">
+          <div className="col-span-4 space-y-6">
+            <div className="bg-brand-card border border-brand-border rounded-2xl p-6 flex flex-col gap-6 shadow-xl relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-24 h-24 bg-hanwha-orange text-white/5 -mr-12 -mt-12 rounded-full" />
+              <h4 className="text-[10px] font-bold text-slate-500 uppercase tracking-widest flex items-center justify-between apple-tight">
                 Draft Assistant
-                <span className="h-2 w-2 rounded-full bg-sky-500 animate-pulse" />
+                <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
               </h4>
               
-              <div className="space-y-3">
-                <div className="p-4 bg-sky-500/10 rounded border border-sky-500/20">
-                  <p className="text-[11px] text-sky-400 font-bold uppercase tracking-wider mb-2">Refinement</p>
-                  <p className="text-[11px] text-slate-400 leading-relaxed italic font-serif">
-                    "Stress concentration at SG-03 (+9.6%) exceeds the standard 8% threshold. I suggest adding a mitigation clause regarding the axle mount damping."
+              <div className="space-y-4">
+                <div className="p-5 bg-hanwha-orange/5 rounded-2xl border border-hanwha-orange/10 shadow-sm">
+                  <p className="text-[11px] text-hanwha-orange font-bold uppercase tracking-widest mb-3">Refinement Note</p>
+                  <p className="text-[13px] text-slate-600 leading-relaxed italic font-medium">
+                    "Stress concentration at <span className="text-hanwha-orange">SG-03</span> (+9.6%) exceeds the standard 8% deviation threshold. Recommend adding a technical mitigation clause."
                   </p>
-                  <button className="mt-3 text-[10px] font-bold text-sky-400 uppercase tracking-widest hover:text-sky-300">
-                    Apply Clause
+                  <button className="mt-4 text-[11px] font-bold text-hanwha-orange uppercase tracking-widest hover:text-slate-900 transition-colors">
+                    Append Mitigation Clause
                   </button>
                 </div>
 
-                <div className="space-y-2 pt-4 border-t border-slate-800">
-                  <p className="text-[10px] text-slate-500 font-bold uppercase tracking-widest mb-2">Attachments</p>
+                <div className="space-y-3 pt-6 border-t border-brand-border">
+                  <p className="text-[10px] text-slate-500 font-bold uppercase tracking-widest mb-2 apple-tight">Reference Attachments</p>
                   {[
-                    { label: 'Strain Map V1', type: 'IMG' },
-                    { label: 'Correlation Graph', type: 'CHART' },
-                    { label: 'ANSYS Results', type: 'RAW' },
+                    { label: 'Strain Topology Map', type: 'DATA' },
+                    { label: 'Correlation Graph', type: 'VEC' },
+                    { label: 'Sim Results (CSV)', type: 'RAW' },
                   ].map((asset, i) => (
-                    <div key={i} className="flex items-center justify-between p-2.5 bg-brand-bg rounded border border-slate-800/50 group cursor-pointer hover:border-sky-500/30 transition-colors">
-                      <span className="text-[11px] text-slate-400">{asset.label}</span>
-                      <span className="text-[9px] font-mono text-slate-600 uppercase group-hover:text-sky-400">{asset.type}</span>
+                    <div key={i} className="flex items-center justify-between p-3.5 bg-slate-50 rounded-xl border border-brand-border group cursor-pointer hover:border-hanwha-orange/30 transition-all">
+                      <span className="text-[11px] text-slate-600 font-medium">{asset.label}</span>
+                      <span className="text-[9px] font-bold text-slate-600 uppercase group-hover:text-hanwha-orange tracking-widest transition-colors">{asset.type}</span>
                     </div>
                   ))}
                 </div>
@@ -183,18 +184,18 @@ export default function ReportPanel() {
               <button 
                 onClick={generateSmartDraft}
                 disabled={isGenerating}
-                className="w-full py-2.5 bg-brand-bg hover:bg-slate-800 rounded border border-slate-800 text-[10px] font-bold uppercase tracking-widest text-slate-300 flex items-center justify-center gap-2 transition-all"
+                className="w-full py-3.5 bg-slate-100 hover:bg-slate-200 rounded-full border border-slate-300 text-[10px] font-bold uppercase tracking-widest text-slate-700 flex items-center justify-center gap-3 transition-all active:scale-95"
               >
-                {isGenerating ? <Loader2 className="w-3 h-3 animate-spin text-sky-400" /> : <Wand2 className="w-3 h-3 text-sky-400" />}
-                Regenerate Intelligent Draft
+                {isGenerating ? <Loader2 className="w-4 h-4 animate-spin text-hanwha-orange" /> : <Wand2 className="w-4 h-4 text-hanwha-orange" />}
+                Refresh Intelligence
               </button>
             </div>
 
-            <div className="p-4 bg-brand-card border border-slate-800 rounded-lg">
-              <div className="flex gap-3">
-                <AlertCircle className="w-4 h-4 text-slate-600 shrink-0" />
-                <p className="text-[10px] text-slate-600 italic leading-relaxed">
-                  System draft requires lead engineer validation (MIL-SPEC-204) before final PLM commit.
+            <div className="p-6 bg-brand-card border border-brand-border rounded-2xl shadow-lg">
+              <div className="flex gap-4">
+                <AlertCircle className="w-5 h-5 text-slate-600 shrink-0" />
+                <p className="text-[11px] text-slate-500 italic leading-relaxed font-medium apple-tight">
+                  All system drafts require physical validation by lead engineer (Protocol MIL-204) before PLM synchronization.
                 </p>
               </div>
             </div>

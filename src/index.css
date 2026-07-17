@@ -1,18 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Outfit", "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
   
-  --color-brand-bg: #0B0E14;
-  --color-brand-card: #151921;
-  --color-brand-border: #1e293b; /* slate-800 */
+  --color-brand-bg: #FFFFFF;
+  --color-brand-card: #F8F9FA;
+  --color-brand-border: #E9ECEF;
+  --color-hanwha-orange: #F37321;
+  --color-hanwha-orange-muted: #F3732115;
+  --color-hanwha-orange-bright: #FF8200;
 }
 
 @layer base {
   body {
-    @apply bg-brand-bg text-slate-200 antialiased;
+    @apply bg-brand-bg text-slate-800 antialiased font-sans;
+    font-size: 17px;
   }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-semibold tracking-tight text-slate-900;
+  }
+}
+
+.apple-tight {
+  letter-spacing: -0.022em;
+}
+
+.glass-morphism {
+  @apply backdrop-blur-xl bg-brand-card/80;
 }
 
 .preserve-3d {
