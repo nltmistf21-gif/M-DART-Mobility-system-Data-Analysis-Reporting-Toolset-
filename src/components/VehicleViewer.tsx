@@ -26,124 +26,115 @@ interface PartInfo {
   position: [number, number, number];
   subBOM: BOMItem[];
   history: ChangeLog[];
+  status: 'OPERATIONAL' | 'NEEDS_MAINTENANCE' | 'CRITICAL';
 }
 
 const VEHICLE_PARTS: PartInfo[] = [
   { 
     id: 'hull', 
-    name: 'Main Hull Structure', 
-    code: 'AS-HULL-900X', 
-    description: 'Advanced composite armor hull with integrated blast protection.', 
-    position: [0, 0.5, 0],
+    name: 'Main Chassis & Hull', 
+    code: 'K9-HULL-SYS', 
+    description: 'All-welded steel armor hull providing protection against 155mm shell fragments and 14.5mm armor-piercing bullets.', 
+    position: [0, 0.35, 0],
     subBOM: [
-      { name: 'Lower Chassis Plate', code: 'CP-LW-001', qty: 1 },
-      { name: 'Sponson Armor Module', code: 'AM-SP-042', qty: 2 },
-      { name: 'Internal Spall Liner', code: 'SL-IN-900', qty: 1 }
+      { name: 'Lower Chassis Plate', code: 'CP-K9-001', qty: 1 },
+      { name: 'Side Armor Plate', code: 'AP-K9-S12', qty: 2 },
+      { name: 'Bottom Blast Shield', code: 'BS-K9-B05', qty: 1 }
     ],
     history: [
-      { date: '2025.12.20', version: 'v2.4', docNo: 'ECR-2025-0841', note: 'Reinforced anti-mine plating added to floor' },
-      { date: '2025.08.15', version: 'v2.3', docNo: 'ECR-2025-0312', note: 'Composite material density optimized' }
-    ]
+      { date: '2025.12.20', version: 'v2.4', docNo: 'ECR-K9-0841', note: 'Reinforced anti-mine plating added to floor' },
+      { date: '2025.08.15', version: 'v2.3', docNo: 'ECR-K9-0312', note: 'Composite material density optimized' }
+    ],
+    status: 'OPERATIONAL'
   },
   { 
     id: 'turret', 
-    name: '30mm Remote Turret', 
-    code: 'TR-RM-30MM', 
-    description: 'Stabilized remote weapon station with thermal imaging.', 
-    position: [0, 1.2, 0.5],
+    name: '155mm Main Turret', 
+    code: 'K9-TRT-155', 
+    description: 'Large-volume rear-mounted turret housing the 155mm/52-cal gun and automatic fire control system.', 
+    position: [0, 1.1, -0.8],
     subBOM: [
-      { name: 'MK44 Bushmaster II', code: 'GN-BM-30', qty: 1 },
-      { name: 'Servo Drive Unit', code: 'SD-TR-015', qty: 2 },
-      { name: 'Ammo Feed Chute', code: 'AF-CH-30', qty: 1 }
+      { name: 'Turret Shell', code: 'TS-K9-155', qty: 1 },
+      { name: 'Traverse Drive', code: 'TD-K9-015', qty: 1 },
+      { name: 'Ammo Rack Module', code: 'AM-K9-R24', qty: 2 }
     ],
     history: [
-      { date: '2026.03.10', version: 'v4.1', docNo: 'ECR-2026-0105', note: 'Improved stabilization algorithm deployed' },
-      { date: '2025.11.02', version: 'v4.0', docNo: 'ECR-2025-1120', note: 'Thermal sensor sensitivity upgrade' }
-    ]
-  },
-  { 
-    id: 'tracks_l', 
-    name: 'Left Track Assembly', 
-    code: 'TK-DR-L22', 
-    description: 'High-durability rubber composite tracks for low vibration.', 
-    position: [-1.2, 0.2, 0],
-    subBOM: [
-      { name: 'Rubber Track Segment', code: 'TS-RB-22', qty: 84 },
-      { name: 'Drive Sprocket', code: 'DS-TK-008', qty: 1 },
-      { name: 'Road Wheel Module', code: 'RW-TK-012', qty: 7 }
+      { date: '2026.03.10', version: 'v4.1', docNo: 'ECR-K9-0105', note: 'Improved stabilization algorithm deployed' },
+      { date: '2025.11.02', version: 'v4.0', docNo: 'ECR-K9-1120', note: 'New ballistic computer integration' }
     ],
-    history: [
-      { date: '2026.01.22', version: 'v1.8', docNo: 'ECR-2026-0042', note: 'Cold weather resilience testing passed' },
-      { date: '2025.09.14', version: 'v1.7', docNo: 'ECR-2025-0567', note: 'Tensioner hydraulic seal replaced' }
-    ]
-  },
-  { 
-    id: 'tracks_r', 
-    name: 'Right Track Assembly', 
-    code: 'TK-DR-R22', 
-    description: 'High-durability rubber composite tracks for low vibration.', 
-    position: [1.2, 0.2, 0],
-    subBOM: [
-      { name: 'Rubber Track Segment', code: 'TS-RB-22', qty: 84 },
-      { name: 'Drive Sprocket', code: 'DS-TK-008', qty: 1 },
-      { name: 'Road Wheel Module', code: 'RW-TK-012', qty: 7 }
-    ],
-    history: [
-      { date: '2026.01.22', version: 'v1.8', docNo: 'ECR-2026-0043', note: 'Cold weather resilience testing passed' },
-      { date: '2025.09.14', version: 'v1.7', docNo: 'ECR-2025-0568', note: 'Tensioner hydraulic seal replaced' }
-    ]
-  },
-  { 
-    id: 'engine', 
-    name: 'Power Pack Module', 
-    code: 'PP-DS-1200HP', 
-    description: '1200HP Multi-fuel engine with hybrid electric drive capability.', 
-    position: [0, 0.6, -1.8],
-    subBOM: [
-      { name: 'Turbocharged Diesel Unit', code: 'EN-DS-1200', qty: 1 },
-      { name: 'Electric Motor/Generator', code: 'MG-HB-400', qty: 1 },
-      { name: 'Cooling Radiator Core', code: 'RD-CR-900', qty: 2 }
-    ],
-    history: [
-      { date: '2026.05.05', version: 'v5.2', docNo: 'ECR-2026-0419', note: 'Hybrid controller firmware update' },
-      { date: '2025.12.12', version: 'v5.1', docNo: 'ECR-2025-0901', note: 'Exhaust filtration system upgrade' }
-    ]
-  },
-  { 
-    id: 'sensor_mast', 
-    name: 'Panoramic Sight', 
-    code: 'SN-OP-PAN01', 
-    description: '360-degree electro-optical situational awareness system.', 
-    position: [0.4, 1.6, 0.3],
-    subBOM: [
-      { name: 'IR Imaging Core', code: 'SN-IR-V3', qty: 1 },
-      { name: 'Laser Range Finder', code: 'SN-LR-002', qty: 1 },
-      { name: 'Gimbal Stabilizer', code: 'GM-OP-011', qty: 1 }
-    ],
-    history: [
-      { date: '2026.02.28', version: 'v3.5', docNo: 'ECR-2026-0088', note: 'Night vision resolution enhancement' },
-      { date: '2025.10.19', version: 'v3.4', docNo: 'ECR-2025-0722', note: 'Optical coating anti-glare update' }
-    ]
+    status: 'NEEDS_MAINTENANCE'
   },
   { 
     id: 'barrel', 
-    name: '30mm Main Cannon Barrel', 
-    code: 'GN-BR-30X', 
-    description: 'High-velocity 30mm automatic cannon barrel with integrated thermal sleeve.', 
-    position: [0, 1.2, 1.8],
+    name: '155mm CN98 Barrel', 
+    code: 'K9-BRL-CN98', 
+    description: '155mm/52-caliber long-range barrel with double-baffle muzzle brake and thermal sleeve.', 
+    position: [0, 1.25, 2.8],
     subBOM: [
-      { name: 'Barrel Thermal Sleeve', code: 'TS-BR-30', qty: 1 },
-      { name: 'Muzzle Brake Unit', code: 'MB-BR-30', qty: 1 },
-      { name: 'Gas Port Assembly', code: 'GP-BR-012', qty: 1 }
+      { name: 'Chrome Lined Tube', code: 'BT-K9-CN98', qty: 1 },
+      { name: 'Muzzle Brake', code: 'MB-K9-155', qty: 1 },
+      { name: 'Thermal Sleeve', code: 'TS-K9-B52', qty: 1 }
     ],
     history: [
-      { date: '2026.04.15', version: 'v2.1', docNo: 'ECR-2026-0331', note: 'Advanced chromium plating for barrel longevity' },
-      { date: '2025.11.30', version: 'v2.0', docNo: 'ECR-2025-0995', note: 'Thermal sleeve material optimization' }
-    ]
+      { date: '2026.04.15', version: 'v2.1', docNo: 'ECR-K9-0331', note: 'Advanced chromium plating for barrel longevity' },
+      { date: '2025.11.30', version: 'v2.0', docNo: 'ECR-K9-0995', note: 'Thermal sleeve material optimization' }
+    ],
+    status: 'OPERATIONAL'
+  },
+  { 
+    id: 'engine', 
+    name: 'STX-MTU 1000HP Engine', 
+    code: 'K9-ENG-1000', 
+    description: 'Front-mounted 1000HP water-cooled diesel engine for high mobility in diverse terrains.', 
+    position: [0.6, 0.6, 1.5],
+    subBOM: [
+      { name: 'MT881 Ka-500 Diesel', code: 'EN-MT-881', qty: 1 },
+      { name: 'Cooling System', code: 'CS-K9-002', qty: 1 },
+      { name: 'Transmission Unit', code: 'TR-K9-L4', qty: 1 }
+    ],
+    history: [
+      { date: '2026.05.05', version: 'v5.2', docNo: 'ECR-K9-0419', note: 'Engine cooling efficiency update' },
+      { date: '2025.12.12', version: 'v5.1', docNo: 'ECR-K9-0901', note: 'Fuel injection timing optimization' }
+    ],
+    status: 'CRITICAL'
+  },
+  { 
+    id: 'tracks_l', 
+    name: 'Left Suspension System', 
+    code: 'K9-SUS-L', 
+    description: 'Hydropneumatic suspension system allowing superior cross-country performance and firing stability.', 
+    position: [-1.2, 0.25, 0],
+    subBOM: [
+      { name: 'Track Link Set', code: 'TL-K9-120', qty: 96 },
+      { name: 'Road Wheel Module', code: 'RW-K9-001', qty: 6 },
+      { name: 'Hydro-pneumatic Unit', code: 'HU-K9-S6', qty: 6 }
+    ],
+    history: [
+      { date: '2026.01.22', version: 'v1.8', docNo: 'ECR-K9-0042', note: 'Shock absorber pressure range calibrated' },
+      { date: '2025.09.14', version: 'v1.7', docNo: 'ECR-K9-0567', note: 'Road wheel rubber compound upgrade' }
+    ],
+    status: 'OPERATIONAL'
+  },
+  { 
+    id: 'tracks_r', 
+    name: 'Right Suspension System', 
+    code: 'K9-SUS-R', 
+    description: 'Hydropneumatic suspension system allowing superior cross-country performance and firing stability.', 
+    position: [1.2, 0.25, 0],
+    subBOM: [
+      { name: 'Track Link Set', code: 'TL-K9-120', qty: 96 },
+      { name: 'Road Wheel Module', code: 'RW-K9-001', qty: 6 },
+      { name: 'Hydro-pneumatic Unit', code: 'HU-K9-S6', qty: 6 }
+    ],
+    history: [
+      { date: '2026.01.22', version: 'v1.8', docNo: 'ECR-K9-0043', note: 'Shock absorber pressure range calibrated' },
+      { date: '2025.09.14', version: 'v1.7', docNo: 'ECR-K9-0568', note: 'Road wheel rubber compound upgrade' }
+    ],
+    status: 'OPERATIONAL'
   },
 ];
 
-function VehiclePart({ part, isSelected, onClick }: { part: PartInfo; isSelected: boolean; onClick: () => void }) {
+function VehiclePart({ part, isSelected, onClick, showDefects }: { part: PartInfo; isSelected: boolean; onClick: () => void; showDefects: boolean }) {
   const meshRef = useRef<THREE.Mesh>(null!);
   const [hovered, setHovered] = useState(false);
 
@@ -153,19 +144,31 @@ function VehiclePart({ part, isSelected, onClick }: { part: PartInfo; isSelected
     } else {
       meshRef.current.scale.lerp(new THREE.Vector3(1, 1, 1), 0.1);
     }
+
+    if (showDefects && (part.status === 'NEEDS_MAINTENANCE' || part.status === 'CRITICAL')) {
+      const scale = 1 + Math.sin(state.clock.elapsedTime * 5) * 0.02;
+      meshRef.current.scale.set(scale, scale, scale);
+    }
   });
 
   const getGeometry = () => {
     switch (part.id) {
-      case 'hull': return <boxGeometry args={[2, 0.8, 4.5]} />;
-      case 'turret': return <boxGeometry args={[1.5, 0.6, 1.5]} />;
+      case 'hull': return <boxGeometry args={[2.2, 0.7, 6]} />;
+      case 'turret': return <boxGeometry args={[2, 0.8, 3.2]} />;
+      case 'barrel': return <cylinderGeometry args={[0.08, 0.08, 5]} />;
+      case 'engine': return <boxGeometry args={[0.9, 0.6, 1.8]} />;
       case 'tracks_l':
-      case 'tracks_r': return <boxGeometry args={[0.5, 0.6, 4.8]} />;
-      case 'engine': return <boxGeometry args={[1.6, 0.7, 1.2]} />;
-      case 'sensor_mast': return <cylinderGeometry args={[0.1, 0.1, 0.4]} />;
-      case 'barrel': return <cylinderGeometry args={[0.08, 0.08, 2.5]} />;
+      case 'tracks_r': return <boxGeometry args={[0.6, 0.5, 6.2]} />;
       default: return <boxGeometry args={[1, 1, 1]} />;
     }
+  };
+
+  const getMaterialColor = () => {
+    if (showDefects) {
+      if (part.status === 'CRITICAL') return '#ef4444';
+      if (part.status === 'NEEDS_MAINTENANCE') return '#f59e0b';
+    }
+    return isSelected ? '#F37321' : hovered ? '#475569' : '#2d3748';
   };
 
   return (
@@ -184,17 +187,17 @@ function VehiclePart({ part, isSelected, onClick }: { part: PartInfo; isSelected
     >
       {getGeometry()}
       <meshStandardMaterial 
-        color={isSelected ? '#F37321' : hovered ? '#475569' : '#1e293b'} 
-        roughness={0.3}
-        metalness={0.8}
-        emissive={isSelected ? '#F37321' : '#000000'}
-        emissiveIntensity={isSelected ? 0.5 : 0}
+        color={getMaterialColor()} 
+        roughness={0.4}
+        metalness={0.7}
+        emissive={getMaterialColor()}
+        emissiveIntensity={isSelected || (showDefects && part.status !== 'OPERATIONAL') ? 0.5 : 0}
       />
     </mesh>
   );
 }
 
-function ArmoredVehicle({ selectedId, onSelectPart }: { selectedId: string | null; onSelectPart: (id: string) => void }) {
+function ArmoredVehicle({ selectedId, onSelectPart, showDefects }: { selectedId: string | null; onSelectPart: (id: string) => void; showDefects: boolean }) {
   return (
     <group>
       {VEHICLE_PARTS.map((part) => (
@@ -203,8 +206,21 @@ function ArmoredVehicle({ selectedId, onSelectPart }: { selectedId: string | nul
           part={part} 
           isSelected={selectedId === part.id}
           onClick={() => onSelectPart(part.id)}
+          showDefects={showDefects}
         />
       ))}
+      
+      {/* Decorative details for K9 look */}
+      <mesh position={[0, 1.15, 0.4]}>
+        <cylinderGeometry args={[0.5, 0.5, 0.4]} />
+        <meshStandardMaterial color="#1a202c" />
+      </mesh>
+      
+      {/* Muzzle brake decorative */}
+      <mesh position={[0, 1.25, 5.3]} rotation={[Math.PI / 2, 0, 0]}>
+        <cylinderGeometry args={[0.15, 0.15, 0.4]} />
+        <meshStandardMaterial color="#000000" metalness={0.9} />
+      </mesh>
     </group>
   );
 }
@@ -212,6 +228,7 @@ function ArmoredVehicle({ selectedId, onSelectPart }: { selectedId: string | nul
 export default function VehicleViewer() {
   const [selectedPartId, setSelectedPartId] = useState<string | null>(null);
   const [activeTab, setActiveTab] = useState<'info' | 'bom' | 'history'>('info');
+  const [showDefects, setShowDefects] = useState(false);
   const selectedPart = VEHICLE_PARTS.find(p => p.id === selectedPartId);
 
   return (
@@ -219,14 +236,27 @@ export default function VehicleViewer() {
       {/* Header */}
       <header className="h-16 border-b border-brand-border flex items-center justify-between px-6 bg-white z-10 glass-morphism">
         <div className="flex items-center gap-4">
-          <h2 className="text-lg font-semibold text-slate-900 tracking-tight apple-tight uppercase">Interactive Vehicle Asset</h2>
+          <h2 className="text-lg font-semibold text-slate-900 tracking-tight apple-tight uppercase">K9 Thunder Assets</h2>
           <div className="h-4 w-px bg-slate-300" />
           <div className="flex items-center gap-2 text-[10px] font-mono text-hanwha-orange bg-hanwha-orange/10 px-2 py-1 rounded border border-hanwha-orange/20 uppercase tracking-[0.1em]">
-            AS21 Redback Digital Twin
+            SPH Digital Twin v1.2
           </div>
         </div>
         
         <div className="flex items-center gap-4">
+          <button 
+            onClick={() => setShowDefects(!showDefects)}
+            className={cn(
+              "flex items-center gap-2 px-4 py-2 rounded-xl text-[10px] font-bold uppercase tracking-widest transition-all",
+              showDefects 
+                ? "bg-red-500 text-white shadow-lg shadow-red-500/20" 
+                : "bg-slate-900 text-white hover:bg-black"
+            )}
+          >
+            <Shield className={cn("w-4 h-4", showDefects && "animate-pulse")} />
+            {showDefects ? "Stop Scan" : "Scan for Defects"}
+          </button>
+          <div className="h-8 w-px bg-slate-200" />
           <div className="flex -space-x-2">
             {[1, 2, 3].map(i => (
               <div key={i} className="w-8 h-8 rounded-full border-2 border-white bg-slate-100 flex items-center justify-center text-[10px] font-bold text-slate-400">
@@ -234,7 +264,6 @@ export default function VehicleViewer() {
               </div>
             ))}
           </div>
-          <div className="text-[10px] text-slate-400 font-bold uppercase tracking-widest">3 active viewers</div>
         </div>
       </header>
 
@@ -260,7 +289,17 @@ export default function VehicleViewer() {
                   </button>
                 </div>
                 <div>
-                  <h3 className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">Part Name</h3>
+                  <div className="flex items-center justify-between mb-1">
+                    <h3 className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Part Name</h3>
+                    <div className={cn(
+                      "px-2 py-0.5 rounded text-[8px] font-bold uppercase",
+                      selectedPart.status === 'OPERATIONAL' ? "bg-emerald-100 text-emerald-700" :
+                      selectedPart.status === 'NEEDS_MAINTENANCE' ? "bg-amber-100 text-amber-700" :
+                      "bg-red-100 text-red-700"
+                    )}>
+                      {selectedPart.status}
+                    </div>
+                  </div>
                   <p className="text-xl font-black text-slate-900 leading-tight uppercase apple-tight mb-2">{selectedPart.name}</p>
                   <div className="inline-flex items-center gap-2 px-2.5 py-1 bg-slate-900 rounded-lg text-emerald-400 font-mono text-[10px] border border-slate-700">
                     <Zap className="w-3 h-3" />
@@ -303,7 +342,12 @@ export default function VehicleViewer() {
                     <div className="grid grid-cols-2 gap-3">
                       <div className="p-3 bg-slate-50 rounded-xl border border-slate-100">
                         <span className="block text-[9px] font-bold text-slate-400 uppercase mb-1">Status</span>
-                        <span className="text-xs font-bold text-emerald-600">OPERATIONAL</span>
+                        <span className={cn(
+                          "text-xs font-bold",
+                          selectedPart.status === 'OPERATIONAL' ? "text-emerald-600" :
+                          selectedPart.status === 'NEEDS_MAINTENANCE' ? "text-amber-600" :
+                          "text-red-600"
+                        )}>{selectedPart.status}</span>
                       </div>
                       <div className="p-3 bg-slate-50 rounded-xl border border-slate-100">
                         <span className="block text-[9px] font-bold text-slate-400 uppercase mb-1">Last Inspection</span>
@@ -365,7 +409,7 @@ export default function VehicleViewer() {
               enablePan={false} 
               minDistance={4} 
               maxDistance={12}
-              autoRotate={!selectedPartId}
+              autoRotate={!selectedPartId && !showDefects}
               autoRotateSpeed={0.5}
             />
             
@@ -377,6 +421,7 @@ export default function VehicleViewer() {
               <Float speed={1.5} rotationIntensity={0.2} floatIntensity={0.5}>
                 <ArmoredVehicle 
                   selectedId={selectedPartId} 
+                  showDefects={showDefects}
                   onSelectPart={(id) => {
                     setSelectedPartId(id);
                     setActiveTab('info');
@@ -395,31 +440,19 @@ export default function VehicleViewer() {
             </Suspense>
           </Canvas>
 
-          {/* Controls UI Overlay */}
-          <div className="absolute right-6 bottom-6 flex flex-col gap-3">
-            <div className="p-4 bg-white/80 backdrop-blur border border-brand-border rounded-2xl shadow-xl space-y-4">
+          {/* Legend Overlay */}
+          {showDefects && (
+            <div className="absolute right-6 bottom-6 flex flex-col gap-2 p-4 bg-white/80 backdrop-blur border border-brand-border rounded-2xl shadow-xl">
               <div className="flex items-center gap-3">
-                <div className="w-2 h-2 rounded-full bg-hanwha-orange animate-ping" />
-                <span className="text-[10px] font-bold text-slate-600 uppercase tracking-widest">Real-time Telemetry</span>
+                <div className="w-3 h-3 rounded-full bg-red-500 animate-pulse" />
+                <span className="text-[10px] font-bold text-slate-600 uppercase tracking-widest">Critical Defect</span>
               </div>
-              <div className="space-y-2">
-                <div className="flex justify-between items-center text-[11px] font-medium text-slate-500">
-                  <span>HULL STRESS</span>
-                  <span className="font-mono text-slate-900">12.4%</span>
-                </div>
-                <div className="h-1 w-32 bg-slate-100 rounded-full overflow-hidden">
-                  <div className="h-full bg-emerald-500 w-[12.4%]" />
-                </div>
+              <div className="flex items-center gap-3">
+                <div className="w-3 h-3 rounded-full bg-amber-500 animate-pulse" />
+                <span className="text-[10px] font-bold text-slate-600 uppercase tracking-widest">Maintenance Required</span>
               </div>
             </div>
-            
-            {!selectedPartId && (
-              <div className="flex items-center gap-3 px-4 py-3 bg-slate-900 text-white rounded-full shadow-2xl animate-bounce">
-                <Shield className="w-4 h-4 text-hanwha-orange" />
-                <span className="text-[10px] font-bold uppercase tracking-widest">Click parts to inspect</span>
-              </div>
-            )}
-          </div>
+          )}
         </div>
       </div>
 
